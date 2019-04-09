@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireAuthModule} from '@angular/fire/auth';
+import {SharedModule} from './shared/shared.module';
 
 const ROUTES: Routes = [
   {
@@ -30,7 +31,8 @@ const config = {
     CommonModule,
     RouterModule.forRoot(ROUTES),
     AngularFireModule.initializeApp(config),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    SharedModule.forRoot()
   ]
 })
 export class AuthModule { }
