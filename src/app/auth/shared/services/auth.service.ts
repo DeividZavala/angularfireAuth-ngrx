@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import 'rxjs/add/operator/do';
+import {tap} from 'rxjs/operators';
 import {Store} from 'store';
 import {AngularFireAuth} from '@angular/fire/auth';
 
@@ -12,18 +12,20 @@ export interface User {
 @Injectable()
 export class AuthService {
 
-  $auth = this.af.authState.do(next => {
-    if (!next) {
-      this.store.set('user', null);
-    }
-    const {email, uid} = next;
-    const user: User = {
-      email,
-      uid,
-      authenticated: true
-    };
-    this.store.set('user', user);
-  });
+  $auth = this.af.authState.pipe(
+    tap(next => {
+      if (!next) {
+        this.store.set('user', null);
+      }
+      const {email, uid} = next;
+      const user: User = {
+        email,
+        uid,
+        authenticated: true
+      };
+      this.store.set('user', user);
+    })
+  );
 
   constructor(
     private store: Store,
