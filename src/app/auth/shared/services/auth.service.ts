@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {tap} from 'rxjs/operators';
+// @ts-ignore
 import {Store} from 'store';
 import {AngularFireAuth} from '@angular/fire/auth';
 

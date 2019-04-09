@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import {RouterModule, Routes} from '@angular/router';
 import { NavbarComponent } from './common/navbar/navbar.component';
 import {AuthModule} from './auth/auth.module';
+// @ts-ignore
+import {Store} from 'store';
 
 const ROUTES: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'todos'}
@@ -20,7 +22,9 @@ const ROUTES: Routes = [
     RouterModule.forRoot(ROUTES),
     AuthModule
   ],
-  providers: [],
+  providers: [
+    Store
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
