@@ -1,16 +1,24 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import {RouterModule, Routes} from '@angular/router';
+import { NavbarComponent } from './common/navbar/navbar.component';
+import {AuthModule} from './auth/auth.module';
+
+const ROUTES: Routes = [
+  {path: '', pathMatch: 'full', redirectTo: 'todos'}
+];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    RouterModule.forRoot(ROUTES),
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
